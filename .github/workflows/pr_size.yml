@@ -1,0 +1,37 @@
+name: PR Size Label
+on: pull_request
+
+jobs:
+  preCondition:
+    name: Pre-condition
+    runs-on: ubuntu-latest
+    outputs:
+      token: ${{ steps.generate_token.outputs.token }}
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@36464acb844fc53b9b8b2401da68844f6b05ebb0
+        with:
+          app_id: ${{ secrets.GH_PRIVATE_APP_ID }}
+          private_key: ${{ secrets.GH_PROJECT_PRIVATE_KEY }}
+
+  size-label:
+    runs-on: ubuntu-latest
+    needs:
+      - preCondition
+    steps:
+      - name: Add size label
+        uses: "pascalgn/size-label-action@v0.4.3"
+        env:
+          GITHUB_TOKEN: "${{ needs.preCondition.outputs.token }}"
+          IGNORED: ".gitignore\n*.md\n*.MD\n*.json\n*.sql\n*.yaml\n*.yml\n.dockerignore\ngo.mod\ngo.sum\nLICENSE"
+        with:
+          sizes: >
+            {
+              "0": "XS",
+              "100": "S",
+              "500": "M",
+              "1000": "L",
+              "1500": "XL",
+              "2500": "XXL"
+            }
