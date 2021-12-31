@@ -1,5 +1,7 @@
 # go-storage
 
+[![unit-and-integration-tests](https://github.com/leonsteinhaeuser/go-storage/actions/workflows/tests.yml/badge.svg)](https://github.com/leonsteinhaeuser/go-storage/actions/workflows/tests.yml)
+
 This repository abstracts the handling for different storage providers. In the current version of the repository, the following storage providers are supported:
 
 - local-storage (disk storage)
