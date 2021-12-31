@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bytes"
 	"io"
 	"testing"
 	"testing/fstest"
@@ -34,6 +35,14 @@ func TestMimeType(t *testing.T) {
 				}(),
 			},
 			want:    "text/plain; charset=utf-8",
+			wantErr: false,
+		},
+		{
+			name: "empty string",
+			args: args{
+				input: bytes.NewBufferString(""),
+			},
+			want:    "text/plain",
 			wantErr: false,
 		},
 	}
