@@ -1,4 +1,4 @@
-module github.com/leonsteinhaeuser/go-storage
+module github.com/leonsteinhaeuser/go-storage-abstraction
 
 go 1.17
 

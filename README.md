@@ -1,4 +1,4 @@
-# go-storage
+# go-storage-abstraction
 
 [![unit-and-integration-tests](https://github.com/leonsteinhaeuser/go-storage/actions/workflows/tests.yml/badge.svg)](https://github.com/leonsteinhaeuser/go-storage/actions/workflows/tests.yml)
 

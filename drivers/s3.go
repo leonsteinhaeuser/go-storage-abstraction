@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
-	"github.com/leonsteinhaeuser/go-storage/utils"
+	"github.com/leonsteinhaeuser/go-storage-abstraction/utils"
 )
 
 // S3Config defines a wrapper for the s3 configuration
