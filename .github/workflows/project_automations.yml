@@ -21,19 +21,6 @@ env:
   in_progress: In Progress
 
 jobs:
-  preCondition:
-    name: Pre-condition
-    runs-on: ubuntu-latest
-    outputs:
-      token: ${{ steps.generate_token.outputs.token }}
-    steps:
-      - name: Generate token
-        id: generate_token
-        uses: tibdex/github-app-token@36464acb844fc53b9b8b2401da68844f6b05ebb0
-        with:
-          app_id: ${{ secrets.GH_PRIVATE_APP_ID }}
-          private_key: ${{ secrets.GH_PROJECT_PRIVATE_KEY }}
-
   issue_opened:
     name: issue_opened
     runs-on: ubuntu-latest
@@ -44,7 +31,7 @@ jobs:
       - name: Move issue to ${{ env.todo }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.3
         with:
-          gh_token: ${{ needs.preCondition.outputs.token }}
+          gh_token: ${{ secrets.PROJECT_AUTOMATION_TOKEN }}
           user: ${{ env.user }}
           project_id: ${{ env.project }}
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -60,7 +47,7 @@ jobs:
       - name: Move PR to ${{ env.in_progress }}
         uses: leonsteinhaeuser/project-beta-automations@v1.0.3
         with:
-          gh_token: ${{ needs.preCondition.outputs.token }}
+          gh_token: ${{ secrets.PROJECT_AUTOMATION_TOKEN }}
           user: ${{ env.user }}
           project_id: ${{ env.project }}
           resource_node_id: ${{ github.event.pull_request.node_id }}
