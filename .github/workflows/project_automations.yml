@@ -24,8 +24,6 @@ jobs:
   issue_opened:
     name: issue_opened
     runs-on: ubuntu-latest
-    needs:
-      - preCondition
     if: github.event_name == 'issues' && github.event.action == 'opened'
     steps:
       - name: Move issue to ${{ env.todo }}
@@ -40,8 +38,6 @@ jobs:
   pr_opened:
     name: pr_opened
     runs-on: ubuntu-latest
-    needs:
-      - preCondition
     if: github.event_name == 'pull_request' && github.event.action == 'opened'
     steps:
       - name: Move PR to ${{ env.in_progress }}
